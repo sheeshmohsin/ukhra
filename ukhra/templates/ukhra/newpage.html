@@ -6,7 +6,6 @@
 
 {% block content %}
 
-                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             	    <form role="form" action="{% if edit %}{{ url_for('editpages', path=path) }}{% else %}{{ url_for('newpages', path=path) }}{% endif %}" method="POST"> 
                         <input id="page_id" name="page_id" type=hidden value={{ page['page_id'] }}>
             	    	<div class="form-group">
@@ -29,6 +28,5 @@
             	    	{{ form.csrf_token }}
             	    	 <p><button type="submit" class="btn btn-success btn-lg">Submit</button><a class="btn btn-danger btn-lg" href="{{ url_for('pages', path=path) }}" role="button">Cancel</a></p>
             	    </form>
-                </div> <!-- End of main content -->
 
 {% endblock %}

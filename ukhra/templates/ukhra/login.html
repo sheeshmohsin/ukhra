@@ -2,28 +2,29 @@
 
 {% block title %}Login{% endblock %}
 {%block tag %}home{% endblock %}
+{% block header %}
+  <link href="{{ url_for('static', filename='css/signin.css') }}" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
-   <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <form role="form" action="{{ url_for('do_login') }}" method="POST">       
-      <div class="form-group">
-        <label for="username">Username:</label>
-        <input type="text" name="username" placeholder="username" />
-      </div>                 
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" name="password" />
-      </div>
-      {{ form.csrf_token }}
-      <input type="submit" value="login" class="btn btn-small border gray pill">
-    </form>
-    <p>
-      If you do not have already an account: <a href="{{ url_for('new_user') }}">Create one!</a>
-    </p>
-
-    <p>
-      <a href="{{ url_for('lost_password') }}">Forgot your password?</a>
-    </p>
-
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <form class="form-signin" action="{{ url_for('do_login') }}" method="POST">
+                <h2 class="form-signin-heading">Please sign in</h2>
+                <input type="text" class="form-control" placeholder="Username" name="username" autofocus>
+                <input type="password" class="form-control" name="password" placeholder="Password">
+                <input type="checkbox" value="remember-me"> Remember me
+                {{ form.csrf_token }}
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            </form>
+            <p>
+                If you do not have already an account: <a href="{{ url_for('new_user') }}">Create one!</a>
+            </p>
+            <p>
+                <a href="{{ url_for('lost_password') }}">Forgot your password?</a>
+            </p>
+        </div>
+        <div class="col-sm-4"></div>
   </div>
 {% endblock %}

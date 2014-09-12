@@ -44,21 +44,7 @@
             </div>
 
         </div>
-    </header>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    <div id="content">
-        <section>
-            <div class="container">
-                {% for category, message in messages %}
-                <div class="alert-box {{ category }}"><span>{{ category }}: </span>{{ message }}</div>
-                {% endfor %}
-
-            </div>
-        </section>
-    </div>
-    {% endif %}
-    {% endwith %} 
+    </header> 
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
@@ -74,7 +60,20 @@
                 </ul>
                 {% block pagetags %}{% endblock %}
             </div>
-            {% block content %}{% endblock %}
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <div id="content">
+                            <section>
+                                {% for category, message in messages %}
+                                    <div class="alert-box {{ category }}"><span>{{ category }}: </span>{{ message }}</div>
+                                {% endfor %}
+                            </section>
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                {% block content %}{% endblock %}
+            </div>
         </div> <!-- End of row -->
     </div> <!-- End of container -->
     <footer>
